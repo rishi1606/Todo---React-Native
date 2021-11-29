@@ -10,8 +10,17 @@ import {
 } from "react-native";
 import Task from "./Task";
 export default function App() {
+   const getLocalItems = () => {
+    let list = localStorage.getItem("lists");
+    console.log(list);
+    if (list) {
+      return JSON.parse(localStorage.getItem("lists"));
+    } else {
+      return [];
+    }
+  };
   const [tasks, setTask] = useState([]);
-  const [taskItems, setTaskItems] = useState([]);
+  const [taskItems, setTaskItems] = useState(getLocalItems());
   const handletask = () => {
     setTaskItems([...taskItems, tasks]);
     setTask("");
